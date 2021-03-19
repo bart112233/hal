@@ -80,7 +80,7 @@ INLINE void pin_clock_enable(const uint32_t pin)
 
 INLINE void _pin_setmode(uint32_t pin, const uint32_t mode)
 {
-	const uint32_t pinid = (_pin_pinno(pin) < 8) ? (_pin_pin(pin)*4) : ((_pin_pin(pin)-8)*4);
+	const uint32_t pinid = (_pin_pinno(pin) < 8) ? (_pin_pinno(pin)*4) : ((_pin_pinno(pin)-8)*4);
 
 	if (_pin_pinno(pin) < 8) {
 		GPIO_CRL(_pin_port(pin)) = (mode << pinid) |
@@ -146,7 +146,7 @@ INLINE void pin_pull_up(const uint32_t pin)
 
 /******************************************************************************/
 
-INLINE void pin_output_pushpull(const uint32_t pin, const bool initial_state)
+INLINE void pin_output_pushpull(const uint32_t pin)
 {
 	_pin_setmode(pin, GPIO_MODE_OUTPUT_50_MHZ | (GPIO_CNF_OUTPUT_PUSHPULL << 2));
 }
